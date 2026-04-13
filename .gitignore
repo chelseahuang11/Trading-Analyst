@@ -224,5 +224,4 @@ dbt/logs/
 .snowflake/
 
 # Generated files
-docs/proposal_content.md
 scripts/

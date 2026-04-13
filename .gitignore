@@ -225,3 +225,5 @@ dbt/logs/
 
 # Generated files
 scripts/
+docs/proposal-template.md
+docs/proposal_content.md

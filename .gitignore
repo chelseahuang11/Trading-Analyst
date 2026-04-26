@@ -215,7 +215,6 @@ project-requirements-README
 snowflake_credentials.json
 
 # dbt
-dbt/profiles.yml
 dbt/target/
 dbt/dbt_packages/
 dbt/logs/

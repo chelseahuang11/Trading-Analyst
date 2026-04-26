@@ -1,0 +1,32 @@
+version: 2
+
+sources:
+  - name: raw
+    database: RMBS
+    schema: RAW
+    tables:
+      - name: fred_observations
+        columns:
+          - name: series_id
+            tests:
+              - not_null
+          - name: observation_date
+            tests:
+              - not_null
+          - name: value
+            tests:
+              - not_null
+
+models:
+  - name: stg_fred_observations
+    description: "Cleaned and typed FRED observations from the RAW layer"
+    columns:
+      - name: series_id
+        tests:
+          - not_null
+      - name: observation_date
+        tests:
+          - not_null
+      - name: value
+        tests:
+          - not_null

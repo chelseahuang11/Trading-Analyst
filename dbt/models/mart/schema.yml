@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: "Date dimension covering 2000–2030"
+    columns:
+      - name: full_date
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_indicator
+    description: "RMBS market indicator metadata"
+    columns:
+      - name: series_id
+        tests:
+          - not_null
+          - unique
+
+  - name: fact_rmbs_indicators
+    description: "Fact table joining FRED observations to date and indicator dimensions"
+    columns:
+      - name: observation_date
+        tests:
+          - not_null
+      - name: series_id
+        tests:
+          - not_null
+      - name: value
+        tests:
+          - not_null

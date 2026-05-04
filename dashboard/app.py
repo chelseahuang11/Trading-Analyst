@@ -170,6 +170,34 @@ with tab3:
     st.subheader("Housing Supply")
     st.info("**Insight:** Housing starts fell sharply in 2022–2023 as affordability deteriorated. Building permits declined even faster — a leading indicator of constrained future supply and continued price support.")
 
+    df_housing = filter_by_category(df, 'Housing Supply')
+
+    if df_housing.empty:
+        st.warning("No housing supply data for the selected date range.")
+    else:
+        fig_housing = px.line(
+            df_housing,
+            x='observation_date',
+            y='value',
+            color='indicator_name',
+            title='Housing Starts and Building Permits',
+            labels={
+                'value': 'Thousands of Units',
+                'observation_date': 'Date',
+                'indicator_name': 'Series',
+            },
+        )
+        fig_housing.update_layout(legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='right', x=1))
+        st.plotly_chart(fig_housing, use_container_width=True)
+
+        latest = (
+            df_housing.sort_values('observation_date')
+            .groupby('indicator_name', as_index=False)
+            .last()[['indicator_name', 'value', 'unit']]
+            .rename(columns={'indicator_name': 'Indicator', 'value': 'Latest Value', 'unit': 'Unit'})
+        )
+        st.dataframe(latest, use_container_width=True, hide_index=True)
+
 with tab4:
     st.subheader("Home Price Index")
     st.info("**Insight:** The Case-Shiller National HPI rose ~45% from 2020 to mid-2022, the fastest appreciation on record. Price growth has since slowed but remained positive, supported by low existing supply.")

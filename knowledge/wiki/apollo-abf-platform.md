@@ -1,6 +1,6 @@
 # Apollo Asset-Backed Finance Platform
 **Last updated:** 2026-05-04
-**Sources:** 01-apollo-abf-strategy, 02-apollo-abc-product, 16-apollo-abf-global-strategy-2024
+**Sources:** 01-apollo-abf-strategy.md, 02-apollo-abc-product.md, 16-apollo-abf-global-strategy-2024.md
 
 ## Overview
 

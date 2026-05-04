@@ -61,14 +61,45 @@ flowchart TB
 
 ## Star Schema (ERD)
 
-```
-RMBS.MART
-├── dim_date          (full_date PK, year, quarter, month, month_name, day, ...)
-├── dim_indicator     (series_id PK, name, category, unit, frequency)
-└── fact_rmbs_indicators
-        ├── observation_date  → dim_date.full_date
-        ├── series_id         → dim_indicator.series_id
-        └── value
+```mermaid
+erDiagram
+    dim_date {
+        date full_date PK
+        int year
+        int quarter
+        int month
+        string month_name
+        int day
+        int day_of_week
+        string day_name
+        boolean is_weekend
+    }
+
+    dim_indicator {
+        string series_id PK
+        string name
+        string category
+        string unit
+        string frequency
+    }
+
+    fact_rmbs_indicators {
+        date observation_date FK
+        int year
+        int quarter
+        int month
+        string month_name
+        string series_id FK
+        string indicator_name
+        string indicator_category
+        string unit
+        string frequency
+        float value
+        timestamp loaded_at
+    }
+
+    dim_date ||--o{ fact_rmbs_indicators : "full_date = observation_date"
+    dim_indicator ||--o{ fact_rmbs_indicators : "series_id"
 ```
 
 ## Setup

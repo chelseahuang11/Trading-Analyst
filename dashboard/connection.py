@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def _get_env(key: str) -> str:
+def _get_env(key: str) -> str | None:
     try:
         return st.secrets[key]
     except Exception:
@@ -51,7 +51,7 @@ def get_data(start_date: str, end_date: str) -> pd.DataFrame:
     return df
 
 
-def get_latest_value(df: pd.DataFrame, series_id: str):
+def get_latest_value(df: pd.DataFrame, series_id: str) -> float | None:
     subset = df[df['series_id'] == series_id]
     if subset.empty:
         return None

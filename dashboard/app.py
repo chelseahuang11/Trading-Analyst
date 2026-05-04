@@ -201,3 +201,31 @@ with tab3:
 with tab4:
     st.subheader("Home Price Index")
     st.info("**Insight:** The Case-Shiller National HPI rose ~45% from 2020 to mid-2022, the fastest appreciation on record. Price growth has since slowed but remained positive, supported by low existing supply.")
+
+    df_hpi = filter_by_category(df, 'Home Price Index')
+
+    if df_hpi.empty:
+        st.warning("No home price data for the selected date range.")
+    else:
+        fig_hpi = px.line(
+            df_hpi,
+            x='observation_date',
+            y='value',
+            color='indicator_name',
+            title='Home Price Indices',
+            labels={
+                'value': 'Index Value',
+                'observation_date': 'Date',
+                'indicator_name': 'Series',
+            },
+        )
+        fig_hpi.update_layout(legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='right', x=1))
+        st.plotly_chart(fig_hpi, use_container_width=True)
+
+        latest = (
+            df_hpi.sort_values('observation_date')
+            .groupby('indicator_name', as_index=False)
+            .last()[['indicator_name', 'value', 'unit']]
+            .rename(columns={'indicator_name': 'Indicator', 'value': 'Latest Value', 'unit': 'Unit'})
+        )
+        st.dataframe(latest, use_container_width=True, hide_index=True)

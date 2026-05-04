@@ -45,16 +45,34 @@ All credentials in `.env` (never committed). Required environment variables:
 - `SNOWFLAKE_WAREHOUSE`
 - `SNOWFLAKE_SCHEMA`
 
-## Knowledge Base Query Conventions
+## Knowledge Base Schema
 
-When answering questions about the RMBS market using this knowledge base:
-1. Start by reading `knowledge/index.md` to find relevant wiki pages
-2. Read the relevant wiki pages in `knowledge/wiki/`
-3. If more detail is needed, read the raw sources in `knowledge/raw/` cited in the wiki page
-4. Synthesize across sources — do not just summarize individual documents
-5. Cite which wiki pages and raw sources informed the answer
+The knowledge base lives in `knowledge/`. It has two layers: raw scraped sources in `knowledge/raw/` and synthesized wiki pages in `knowledge/wiki/`. `knowledge/index.md` is the catalog.
 
-Example queries this knowledge base can answer:
-- "What does my knowledge base say about Non-QM loan performance trends?"
-- "What is Apollo's stated strategy for the ABF platform?"
-- "What does my knowledge base say about the current rate environment's impact on RMBS?"
+### Ingest
+
+When a new file lands in `knowledge/raw/`:
+1. Read the new source file
+2. Check `knowledge/index.md` to find the most relevant wiki page(s)
+3. Add new facts, data points, and insights to the relevant wiki page(s) — synthesize, don't append
+4. Add the new file to the Raw Sources table in `knowledge/index.md`
+5. Commit with message: `docs(kb): ingest [slug]`
+
+### Query
+
+When asked about RMBS markets, ABF, mortgage rates, delinquency, housing, or the Apollo role:
+1. Read `knowledge/index.md` first to identify which wiki page(s) are relevant
+2. Open the relevant wiki page(s) in `knowledge/wiki/`
+3. Drill into `knowledge/raw/` only when a direct quote or exact figure from a specific source is needed
+4. Synthesize across pages — do not just recite what each page says
+5. Cite sources: name the wiki page and raw file that supports each claim
+
+### Lint
+
+Periodically scan the wiki for quality drift:
+1. **Contradictions** — does any claim on one wiki page conflict with another?
+2. **Stale data** — are any figures superseded by a newer raw source that has since been ingested?
+3. **Orphan pages** — is every wiki page listed in `knowledge/index.md`?
+4. **Missing cross-references** — do wiki pages that discuss overlapping topics link to each other?
+
+Fix one finding per lint run. Commit with message: `docs(kb): lint [description of fix]`

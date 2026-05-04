@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RMBS Market Intelligence — Portfolio Slides</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+  }
+
+  .slide {
+    width: 960px;
+    min-height: 540px;
+    margin: 32px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    padding: 52px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── Accent bar ── */
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 8px; height: 100%;
+    background: #003366;
+  }
+
+  /* ── Title slide ── */
+  .slide.title { background: #003366; color: #fff; }
+  .slide.title::before { background: #c9a84c; }
+  .slide.title .eyebrow { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #c9a84c; margin-bottom: 16px; }
+  .slide.title h1 { font-size: 36px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; }
+  .slide.title .subtitle { font-size: 16px; opacity: 0.75; margin-bottom: 32px; }
+  .slide.title .meta { font-size: 13px; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 16px; }
+
+  /* ── Section label ── */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+  .tag.descriptive { background: #e8f0fe; color: #1a56db; }
+  .tag.diagnostic  { background: #fef3c7; color: #b45309; }
+  .tag.recommend   { background: #d1fae5; color: #065f46; }
+
+  /* ── Takeaway title ── */
+  h2.takeaway {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #003366;
+    margin-bottom: 28px;
+    max-width: 780px;
+  }
+
+  /* ── Two-column layout ── */
+  .cols { display: flex; gap: 32px; align-items: flex-start; }
+  .col-chart { flex: 1.4; }
+  .col-text  { flex: 1; }
+
+  /* ── Callout box ── */
+  .callout {
+    background: #fff8e1;
+    border-left: 4px solid #c9a84c;
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #3d2b00;
+    margin-bottom: 18px;
+  }
+  .callout strong { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #a07000; margin-bottom: 4px; }
+
+  /* ── Supporting text ── */
+  .support { font-size: 13.5px; color: #444; line-height: 1.7; }
+  .support li { margin-bottom: 6px; margin-left: 16px; }
+
+  /* ── SVG chart ── */
+  .chart-wrap {
+    background: #f7f9fc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .chart-title { font-size: 12px; font-weight: 600; color: #6b7280; margin-bottom: 8px; }
+
+  /* ── Recommendation ── */
+  .rec-box {
+    background: #f0fdf4;
+    border: 1.5px solid #6ee7b7;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+  .rec-box .arrow { font-size: 22px; color: #059669; margin: 8px 0; }
+  .rec-action  { font-size: 15px; font-weight: 700; color: #065f46; }
+  .rec-outcome { font-size: 14px; color: #374151; margin-top: 4px; }
+  .rec-evidence { font-size: 12.5px; color: #6b7280; margin-top: 10px; font-style: italic; }
+
+  /* ── Pipeline overview ── */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 24px 0;
+    font-size: 12px;
+  }
+  .pipe-box {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 14px;
+    text-align: center;
+    min-width: 110px;
+  }
+  .pipe-box .icon { font-size: 20px; }
+  .pipe-box .label { font-weight: 600; color: #1e293b; margin-top: 4px; font-size: 11px; }
+  .pipe-box .sub   { color: #64748b; font-size: 10px; margin-top: 2px; }
+  .pipe-arrow { font-size: 18px; color: #94a3b8; padding: 0 6px; }
+
+  /* ── Print ── */
+  @media print {
+    body { background: white; }
+    .slide { margin: 0; border-radius: 0; box-shadow: none; width: 100%; min-height: 100vh; }
+  }
+  @page { size: 960px 540px landscape; margin: 0; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 1 — TITLE
+══════════════════════════════════════════════ -->
+<div class="slide title">
+  <div class="eyebrow">Portfolio Project · ISBA 4715</div>
+  <h1>RMBS Market Intelligence<br>Dashboard</h1>
+  <div class="subtitle">End-to-end analytics pipeline tracking residential mortgage-backed securities market indicators</div>
+  <div class="meta">
+    FRED API &nbsp;·&nbsp; dbt + Snowflake &nbsp;·&nbsp; Streamlit &nbsp;·&nbsp; Firecrawl Knowledge Base<br>
+    Target Role: Trading Analyst, Asset-Backed Finance — Apollo Global Management
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 2 — PIPELINE OVERVIEW
+══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="tag descriptive">Project Overview</div>
+  <h2 class="takeaway">Two-Path Pipeline: Structured Data + Knowledge Base</h2>
+  <div class="pipeline">
+    <div class="pipe-box"><div class="icon">📡</div><div class="label">FRED API</div><div class="sub">9 series</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box"><div class="icon">⚙️</div><div class="label">GitHub Actions</div><div class="sub">Weekly</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box"><div class="icon">❄️</div><div class="label">Snowflake RAW</div><div class="sub">FRED_OBSERVATIONS</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box"><div class="icon">🔧</div><div class="label">dbt</div><div class="sub">Star schema</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box"><div class="icon">📊</div><div class="label">Streamlit</div><div class="sub">Community Cloud</div></div>
+  </div>
+  <div class="pipeline" style="margin-top:8px">
+    <div class="pipe-box"><div class="icon">🌐</div><div class="label">Firecrawl</div><div class="sub">16 sources</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box"><div class="icon">📁</div><div class="label">knowledge/raw</div><div class="sub">Scraped docs</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box"><div class="icon">🤖</div><div class="label">Claude Code</div><div class="sub">Synthesis</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box"><div class="icon">📚</div><div class="label">Wiki Pages</div><div class="sub">3 pages</div></div>
+    <div class="pipe-arrow">→</div>
+    <div class="pipe-box"><div class="icon">💬</div><div class="label">Query Engine</div><div class="sub">Interview prep</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 3 — DESCRIPTIVE INSIGHT
+══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="tag descriptive">Descriptive Analytics</div>
+  <h2 class="takeaway">Mortgage Rates Have Fallen 120bps From Peak But Remain Twice the Pre-2022 Average</h2>
+  <div class="cols">
+    <div class="col-chart">
+      <div class="chart-wrap">
+        <div class="chart-title">30-Year Fixed Mortgage Rate (MORTGAGE30US) · 2019–2024</div>
+        <!-- SVG line chart approximating the rate curve -->
+        <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <!-- Grid -->
+          <line x1="40" y1="20" x2="40" y2="170" stroke="#e2e8f0" stroke-width="1"/>
+          <line x1="40" y1="170" x2="460" y2="170" stroke="#e2e8f0" stroke-width="1"/>
+          <line x1="40" y1="120" x2="460" y2="120" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+          <line x1="40" y1="70"  x2="460" y2="70"  stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4"/>
+          <!-- Y labels -->
+          <text x="32" y="173" font-size="9" fill="#94a3b8" text-anchor="end">3%</text>
+          <text x="32" y="123" font-size="9" fill="#94a3b8" text-anchor="end">5%</text>
+          <text x="32" y="73"  font-size="9" fill="#94a3b8" text-anchor="end">7%</text>
+          <text x="32" y="28"  font-size="9" fill="#94a3b8" text-anchor="end">8%</text>
+          <!-- X labels -->
+          <text x="55"  y="183" font-size="9" fill="#94a3b8">2019</text>
+          <text x="135" y="183" font-size="9" fill="#94a3b8">2020</text>
+          <text x="215" y="183" font-size="9" fill="#94a3b8">2021</text>
+          <text x="295" y="183" font-size="9" fill="#94a3b8">2022</text>
+          <text x="375" y="183" font-size="9" fill="#94a3b8">2023</text>
+          <text x="440" y="183" font-size="9" fill="#94a3b8">2024</text>
+          <!-- Rate line: 3.7→3.6→2.65→5.3→6.8→7.8→6.6 (mapped to y-axis: 3%=170, 8%=20, so 1%=30px) -->
+          <!-- 2019=3.7%→y=161, 2020=3.6→y=163, early2021=2.65→y=192→clip to 165, mid2022=5.3→y=131, early2023=6.8→y=89, oct2023=7.8→y=59, dec2024=6.6→y=101 -->
+          <polyline
+            points="55,161 95,163 135,163 175,165 215,145 255,100 295,85 335,62 375,59 405,65 430,75 455,85"
+            fill="none" stroke="#003366" stroke-width="2.5" stroke-linejoin="round"/>
+          <!-- Peak annotation -->
+          <circle cx="375" cy="59" r="4" fill="#ef4444"/>
+          <text x="380" y="52" font-size="9" fill="#ef4444" font-weight="bold">7.8% peak</text>
+          <!-- 2024 end -->
+          <circle cx="455" cy="85" r="4" fill="#003366"/>
+          <text x="415" y="80" font-size="9" fill="#003366" font-weight="bold">6.6% (2024)</text>
+          <!-- Pre-2022 avg reference line -->
+          <line x1="55" y1="155" x2="255" y2="155" stroke="#c9a84c" stroke-width="1.5" stroke-dasharray="5"/>
+          <text x="60" y="150" font-size="9" fill="#c9a84c">~3.5% pre-2022 avg</text>
+        </svg>
+      </div>
+    </div>
+    <div class="col-text">
+      <div class="callout">
+        <strong>Key Evidence</strong>
+        30Y mortgage rate peaked at <strong>7.8%</strong> in Oct 2023 — highest since 2000 — and has since fallen to ~6.6%. Yet pre-2022 borrowers locked in rates near 3–4%, creating a <strong>"lock-in effect"</strong> suppressing existing home sales to 30-year lows.
+      </div>
+      <div class="support">
+        <ul>
+          <li>9 FRED series tracked from 2000–present</li>
+          <li>30Y, 15Y, and 5/1 ARM rates all remain historically elevated</li>
+          <li>Lock-in effect: ~85% of mortgages outstanding carry sub-5% rates</li>
+          <li>Existing home sales fell to 3.84M — lowest since Oct 2010</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 4 — DIAGNOSTIC INSIGHT
+══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="tag diagnostic">Diagnostic Analytics</div>
+  <h2 class="takeaway">FHA Delinquency at 11.5% Signals Concentrated Stress in Lower-Income Borrowers, Not Broad Credit Deterioration</h2>
+  <div class="cols">
+    <div class="col-chart">
+      <div class="chart-wrap">
+        <div class="chart-title">Delinquency Rate Comparison — Q4 2025</div>
+        <svg viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <!-- Bars -->
+          <!-- FHA 11.52% -->
+          <rect x="60"  y="26"  width="80" height="144" fill="#ef4444" rx="4"/>
+          <text x="100" y="22"  font-size="11" fill="#ef4444" font-weight="bold" text-anchor="middle">11.52%</text>
+          <text x="100" y="183" font-size="10" fill="#374151" text-anchor="middle">FHA Loans</text>
+          <!-- MBA overall 4.26% -->
+          <rect x="170" y="116" width="80" height="54" fill="#f59e0b" rx="4"/>
+          <text x="210" y="112" font-size="11" fill="#b45309" font-weight="bold" text-anchor="middle">4.26%</text>
+          <text x="210" y="183" font-size="10" fill="#374151" text-anchor="middle">All Mortgages</text>
+          <text x="210" y="195" font-size="9" fill="#94a3b8" text-anchor="middle">(MBA Survey)</text>
+          <!-- Cotality 3.2% -->
+          <rect x="280" y="129" width="80" height="41" fill="#60a5fa" rx="4"/>
+          <text x="320" y="125" font-size="11" fill="#1d4ed8" font-weight="bold" text-anchor="middle">3.2%</text>
+          <text x="320" y="183" font-size="10" fill="#374151" text-anchor="middle">All Mortgages</text>
+          <text x="320" y="195" font-size="9" fill="#94a3b8" text-anchor="middle">(Cotality)</text>
+          <!-- Axis -->
+          <line x1="40" y1="170" x2="390" y2="170" stroke="#e2e8f0" stroke-width="1"/>
+          <!-- Reference: pre-COVID avg ~4% -->
+          <line x1="40" y1="119" x2="390" y2="119" stroke="#c9a84c" stroke-width="1.2" stroke-dasharray="5"/>
+          <text x="42" y="115" font-size="9" fill="#c9a84c">Pre-COVID avg ~4%</text>
+        </svg>
+      </div>
+    </div>
+    <div class="col-text">
+      <div class="callout">
+        <strong>Key Evidence</strong>
+        FHA delinquency (11.52%) is <strong>2.7× the overall rate</strong> (4.26%) and rising — reaching its highest level since Q2 2021. The divergence is not random: FHA borrowers are lower-income, first-time buyers whose delinquency tracks <strong>labor market stress</strong>, not just interest rates.
+      </div>
+      <div class="support">
+        <ul>
+          <li>Cause: expired pandemic-era FHA forbearance + labor market disparities</li>
+          <li>Overall rate rose only +28bps YoY — headline masks concentration of stress</li>
+          <li>Geographic cluster: Texas Sun Belt metros (+1.3pp), Maryland, Nevada</li>
+          <li>Foreclosure inventory still near historic lows — not a systemic signal yet</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SLIDE 5 — RECOMMENDATION
+══════════════════════════════════════════════ -->
+<div class="slide">
+  <div class="tag recommend">Actionable Recommendation</div>
+  <h2 class="takeaway">Use FHA Delinquency as an Early Warning Signal Before Rotating Into Non-QM Subordinated Tranches</h2>
+  <div class="cols">
+    <div class="col-text" style="flex:1.2">
+      <div class="rec-box">
+        <div class="rec-action">📌 Action: Monitor FHA delinquency trajectory quarterly alongside the FRED Delinquency tab before adding exposure to subordinated Non-QM RMBS tranches from 2022–2024 vintages.</div>
+        <div class="arrow">↓</div>
+        <div class="rec-outcome">✅ Expected Outcome: Avoid buying into sub-tranche spread compression while credit stress is still rising in the FHA segment — which historically leads Non-QM vintage stress by 1–2 quarters.</div>
+        <div class="rec-evidence">Evidence: KBRA decade study shows 3.8% CDR → 0.03% realized loss when underwriting is sound, but non-prime profiles reach 8–10% CDR. FHA stress is an upstream signal for collateral pool risk in similarly-rated borrower segments.</div>
+      </div>
+    </div>
+    <div class="col-text" style="flex:1">
+      <div class="callout">
+        <strong>Why This Matters for Apollo ABF</strong>
+        Apollo has deployed $44B+ across residential mortgage and Non-QM RMBS over a decade. The dashboard's Delinquency tab directly surfaces the DRSFRMACBS series used to time entry/exit decisions in subordinated tranches. Monitoring FHA as a leading indicator is standard practice for credit traders in this asset class.
+      </div>
+      <div class="support">
+        <ul>
+          <li>Dashboard tab: Delinquency Rates → DRSFRMACBS</li>
+          <li>Knowledge base: non-qm-market.md → vintage analysis</li>
+          <li>Knowledge base: rmbs-market-conditions.md → FHA data</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

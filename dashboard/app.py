@@ -138,6 +138,34 @@ with tab2:
     st.subheader("Delinquency Rates")
     st.info("**Insight:** Single-family mortgage delinquency spiked above 8% in Q2 2020 (COVID forbearance) before falling to historic lows by 2022. Rising rates since 2022 have not yet translated into elevated delinquency — a key watch indicator for RMBS performance.")
 
+    df_delinq = filter_by_category(df, 'Delinquency Rates')
+
+    if df_delinq.empty:
+        st.warning("No delinquency data for the selected date range.")
+    else:
+        fig_delinq = px.line(
+            df_delinq,
+            x='observation_date',
+            y='value',
+            color='indicator_name',
+            title='Mortgage Delinquency Rates',
+            labels={
+                'value': 'Delinquency Rate (%)',
+                'observation_date': 'Date',
+                'indicator_name': 'Series',
+            },
+        )
+        fig_delinq.update_layout(legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='right', x=1))
+        st.plotly_chart(fig_delinq, use_container_width=True)
+
+        latest = (
+            df_delinq.sort_values('observation_date')
+            .groupby('indicator_name', as_index=False)
+            .last()[['indicator_name', 'value', 'unit']]
+            .rename(columns={'indicator_name': 'Indicator', 'value': 'Latest Value', 'unit': 'Unit'})
+        )
+        st.dataframe(latest, use_container_width=True, hide_index=True)
+
 with tab3:
     st.subheader("Housing Supply")
     st.info("**Insight:** Housing starts fell sharply in 2022–2023 as affordability deteriorated. Building permits declined even faster — a leading indicator of constrained future supply and continued price support.")
